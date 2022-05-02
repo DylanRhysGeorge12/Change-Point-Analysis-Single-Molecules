@@ -1,0 +1,13 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import ruptures as rpt
+
+data = np.load('/Users/Ashley/Downloads/Dylansignal.npy')
+plt.plot(data)
+model = "normal"  # "l1", "l2", "rbf", "linear", "normal", "ar"
+algo = rpt.Window(width=10, model=model).fit((data))
+my_bkps = algo.predict(pen=.1)
+print(my_bkps)
+
+rpt.display(data, my_bkps)
+plt.show()
